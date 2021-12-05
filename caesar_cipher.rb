@@ -6,6 +6,9 @@ def caesar_cipher(string, shift_amount)
     if new_c.between?(65, 90)
       if new_c + shift_amount > 90 ? new_c += (shift_amount - 26) : new_c += shift_amount
       end
+    elsif new_c.between?(97, 122)
+      if new_c + shift_amount > 122 ? new_c += (shift_amount - 26) : new_c += shift_amount
+      end
     end
 
     new_c.chr
