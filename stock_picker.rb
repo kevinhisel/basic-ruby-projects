@@ -28,11 +28,25 @@ def find_index_of_highest(array, offset = 0)
   index_of_highest
 end
 
+def compare_pairs(array, current_pair, new_pair)
+  if (array[current_pair[1]] - array[current_pair[0]]) >= 
+     (array[new_pair[1]] - array[new_pair[0]])
+    current_pair
+  else
+    new_pair    
+  end
+end
+
 def find_pair(array)
   pair = Array.new(2)
   pair[0] = find_index_of_lowest(array)
   pair[1] = find_index_of_highest(array[pair[0]..array.length], pair[0])
-  pair
+# binding.pry
+  if array[0..pair[0] - 1].length < 2
+    pair    
+  else
+    compare_pairs(array, pair, find_pair(array[0..pair[0] - 1]))    
+  end
 end
 
 def stock_picker(prices)
