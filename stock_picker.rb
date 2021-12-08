@@ -1,4 +1,4 @@
-# require 'pry-byebug'
+require 'pry-byebug'
 
 def find_index_of_lowest(array)
   index_of_lowest = nil
@@ -41,16 +41,17 @@ def find_pair(array)
   pair = Array.new(2)
   pair[0] = find_index_of_lowest(array)
   pair[1] = find_index_of_highest(array[pair[0]..array.length], pair[0])
-# binding.pry
-  if array[0..pair[0] - 1].length < 2
+  
+  if array[0..pair[0]].length < 2
     pair    
   else
-    compare_pairs(array, pair, find_pair(array[0..pair[0] - 1]))    
+    compare_pairs(array, pair, find_pair(array[0..pair[0]]))    
   end
 end
 
 def stock_picker(prices)
-  find_pair(prices)
+  best_pair = find_pair(prices)
+  best_pair unless best_pair[0] == best_pair[1]
 end
 
 priceA = [17,3,6,9,15,8,6,1,10]
